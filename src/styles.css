@@ -1,1 +1,150 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  font-family: "Nunito", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  color: #003327;
+}
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fbf1eb;
+}
+
+.app-container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+
+.app-header {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.app-header nav {
+  text-decoration: none;
+  margin-left: 20px;
+}
+.app-header nav a {
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+/* Main container */
+
+.app-main {
+  display: grid;
+  grid-template-rows: 60% 40%;
+  height: 100vh;
+}
+
+.top-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  background: url("/assets/images/background.webp") no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.center-panel .selected-date-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Right pannel with the date cards */
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50%; /* Start roughly in the middle vertically */
+}
+
+.cards-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Space between cards */
+  margin-right: 30px;
+}
+
+.date-card {
+  background-color: #fbf1eb;
+  border-radius: 45px;
+  padding: 2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.date-card:hover {
+  transform: scale(1.05);
+}
+
+.date-card h3 {
+  color: #333;
+}
+
+.date-card p {
+  color: #666;
+}
+
+.date-card .date {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Bottom section */
+
+.bottom-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 2px solid #ccc;
+}
+
+.bottom-section .section {
+  padding: 20px;
+  border-left: 2px solid #ccc;
+}
+
+.bottom-section .section:first-child {
+  border-left: none;
+}
+
+/* Additional styles for headings, text, and other elements */
+h1,
+h2,
+p {
+  margin: 0;
+  padding: 10px;
+}
+
+/* Styling for the panels to add spacing and alignment */
+.left-panel,
+.right-panel,
+.center-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
