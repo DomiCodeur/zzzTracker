@@ -204,3 +204,50 @@ body {
   width: 70%;
   padding: 10px;
 }
+
+.bottom-section .section:nth-child(3) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.date-input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  width: 80%;
+  gap: 10px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 16px;
+}
+
+.title-input {
+  background-color: #f0f0f0;
+}
+
+.date-input {
+  background-color: #e0e0e0;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background-color: #666;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.submit-button:hover {
+  background-color: #333;
+}
