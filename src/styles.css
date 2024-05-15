@@ -12,8 +12,6 @@
 }
 html,
 body {
-  height: 100%;
-  width: 100%;
   overflow: hidden;
   background-color: #fbf1eb;
 }
@@ -32,6 +30,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 5vh;
 }
 
 .app-header h1 {
@@ -52,8 +51,8 @@ body {
 
 .app-main {
   display: grid;
-  grid-template-rows: 60% 40%;
-  height: 100vh;
+  grid-template-rows: 55% 45%;
+  height: 95vh;
 }
 
 .top-section {
@@ -69,6 +68,46 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.selected-date-display h1 {
+  font-size: 100px;
+}
+
+.selected-date-display {
+  position: relative;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #fffff6, #fffff6 80%, #fffff6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 23s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 25px rgba(255, 255, 246, 0.8);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 35px rgba(255, 255, 246, 1);
+  }
+}
+
+.number {
+  font-size: 70px;
+  color: #333;
+  font-weight: bold;
+}
+
+.selected-date-display p {
+  color: #333;
+  margin-top: 0;
 }
 
 /* Right pannel with the date cards */
@@ -92,8 +131,11 @@ body {
 .date-card {
   background-color: #fbf1eb;
   border-radius: 45px;
-  padding: 2px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-width: 2px;
+  border-style: solid; /* This line is necessary to make the border visible */
+  border-color: #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
   transition: transform 0.3s ease-in-out;
 }
@@ -130,14 +172,18 @@ body {
 
 .bottom-section .section:first-child {
   border-left: none;
+  background-image: url("/assets/images/calendar.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 50px;
+  margin-bottom: 50px;
 }
 
-/* Additional styles for headings, text, and other elements */
-h1,
-h2,
-p {
-  margin: 0;
-  padding: 10px;
+.bottom-section .section:nth-child(2) {
+  display: flex;
+  align-items: center;
+  padding-top: 70px;
+  flex-direction: column;
 }
 
 /* Styling for the panels to add spacing and alignment */
@@ -147,4 +193,14 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.calendar-container {
+  background-image: url("/assets/images/calendar.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* min-height: 50px; */
+  width: 70%;
+  padding: 10px;
 }
