@@ -25,9 +25,12 @@ export class AuthenticationService {
   }
 
   login(email: string, password: string): Observable<AuthResponseData> {
-    return this.http.post<AuthResponseData>(`${this.apiBaseUrl}/users/login`, {
-      email,
-      password,
-    });
+    return this.http.post<AuthResponseData>(
+      `${this.apiBaseUrl}/api/v1/auth/authenticate`,
+      {
+        email,
+        password,
+      }
+    );
   }
 }
