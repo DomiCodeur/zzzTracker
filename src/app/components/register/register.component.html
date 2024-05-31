@@ -1,37 +1,27 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Créer un compte</title>
-  </head>
-  <body>
-    <div class="register-container">
-      <h2 class="title">Créer un compte</h2>
-      <div class="form-container">
-        <div class="input-group">
-          <label for="email">Email</label>
-          <input
-            formControlName="email"
-            type="email"
-            placeholder="votre-email@example.com"
-            id="email"
-            class="input"
-          />
-        </div>
-        <div class="input-group">
-          <label for="password">Mot de passe</label>
-          <input
-            formControlName="password"
-            type="password"
-            placeholder="votre mot de passe"
-            id="password"
-            class="input"
-          />
-        </div>
-        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-        <button class="btn" (click)="register()">S'inscrire</button>
-      </div>
+<div class="register-container">
+  <h2 class="title">Créer un compte</h2>
+  <form [formGroup]="registerForm" class="form-container">
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input
+        formControlName="email"
+        id="email"
+        type="email"
+        placeholder="votre-email@example.com"
+        class="input"
+      />
     </div>
-  </body>
-</html>
+    <div class="input-group">
+      <label for="password">Mot de passe</label>
+      <input
+        formControlName="password"
+        id="password"
+        type="password"
+        placeholder="votre mot de passe"
+        class="input"
+      />
+    </div>
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <button type="button" class="btn" (click)="register()">S'inscrire</button>
+  </form>
+</div>

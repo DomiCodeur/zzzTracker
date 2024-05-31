@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
@@ -8,24 +8,22 @@ import { AuthenticationService } from '../../services/authentication/authenticat
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  errorMessage = '';
-
-  registerForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-  });
+  registerForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
     private authService: AuthenticationService
-  ) {}
+  ) {
+    this.registerForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
 
   register() {
     if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value as {
-        email: string;
-        password: string;
-      };
+      const { email, password } = this.registerForm.value;
       this.authService.register(email, password).subscribe({
         next: (response) => {
           console.log('Registration successful', response);
