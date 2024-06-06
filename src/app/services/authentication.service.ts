@@ -6,6 +6,7 @@ interface AuthResponseData {
   id: string;
   email: string;
   token: string;
+  userId: number;
 }
 
 @Injectable({
@@ -26,7 +27,7 @@ export class AuthenticationService {
 
   login(email: string, password: string): Observable<AuthResponseData> {
     return this.http.post<AuthResponseData>(
-      `${this.apiBaseUrl}/api/v1/auth/authenticate`,
+      `${this.apiBaseUrl}/auth/authenticate`,
       {
         email,
         password,

@@ -1,10 +1,24 @@
 <div class="date-input-container">
-  <input
-    type="text"
-    id="dateTitle"
-    placeholder="Enter Title"
-    class="input-field title-input"
-  />
-  <input type="date" id="datePicker" class="input-field date-input" />
-  <button type="button" class="submit-button">Save Date</button>
+  <form [formGroup]="dateForm" (ngSubmit)="saveDate()">
+    <div class="input-group">
+      <input
+        type="text"
+        id="dateTitle"
+        placeholder="Enter Title"
+        formControlName="title"
+        class="input-field title-input"
+      />
+    </div>
+    <div class="input-group">
+      <input
+        type="date"
+        id="datePicker"
+        formControlName="date"
+        class="input-field date-input"
+      />
+      <button type="submit" class="submit-button" [disabled]="!dateForm.valid">
+        Save Date
+      </button>
+    </div>
+  </form>
 </div>

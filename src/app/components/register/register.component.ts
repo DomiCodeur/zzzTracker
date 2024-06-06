@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { UserService } from '../../services/user/user.service';
-import { User } from 'src/app/models/user.model';
+import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,14 +28,17 @@ export class RegisterComponent {
 
   register() {
     if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value;
+      const { email, password } = this.registerForm.value as {
+        email: string;
+        password: string;
+      };
       this.authService.register(email, password).subscribe({
         next: (response) => {
           console.log('Registration successful', response);
           this.router.navigate(['/']);
           const newUser = new User(
-            response.id,
-            email,
+            response.userId,
+            response.email,
             null,
             null,
             response.token

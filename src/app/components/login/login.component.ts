@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from '../../services/authentication/authentication.service';
-import { UserService } from '../../services/user/user.service';
+import { AuthenticationService } from '../../services/authentication.service';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 
@@ -34,7 +34,7 @@ export class LoginComponent {
         next: (response) => {
           this.router.navigate(['/']);
           const newUser = new User(
-            response.id,
+            response.userId,
             email,
             null,
             null,

@@ -24,12 +24,13 @@ body {
   flex-direction: column;
 }
 
+/* APP HEADER */
+
 .app-header {
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* background-color: #f1f1f1; */
   height: 5vh;
 }
 
@@ -49,6 +50,8 @@ body {
   flex: 1;
 }
 
+/* TOP SECTION */
+
 .top-section {
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -56,6 +59,14 @@ body {
   background-size: cover;
   overflow: hidden;
   height: 45vh;
+}
+
+.left-panel,
+.right-panel,
+.center-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .center-panel .selected-date-display {
@@ -150,6 +161,8 @@ body {
   color: #555;
 }
 
+/* BOTTOM SECTION */
+
 .bottom-section {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -162,7 +175,6 @@ body {
   border-left: 2px solid #ccc;
   display: flex;
   justify-content: top;
-  align-items: center;
   flex-direction: column;
 }
 
@@ -172,26 +184,26 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
-
-.left-panel,
-.right-panel,
-.center-panel {
+.bottom-section .section:nth-child(2) {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
-
 .date-input-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 10px;
-  width: 80%;
   gap: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
 }
 
 .input-field {
-  width: 100%;
   padding: 10px 20px;
   border-radius: 20px;
   border: 1px solid #ccc;
@@ -208,6 +220,7 @@ body {
   cursor: pointer;
   font-size: 16px;
   text-transform: uppercase;
+  margin-top: 10px;
 }
 
 .submit-button:hover {

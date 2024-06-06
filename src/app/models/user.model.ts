@@ -1,12 +1,12 @@
 export class User {
-  id: string | null;
+  id: number;
   email: string | null;
   timeUnit: string | null;
   theme: string | null;
   token: string | null;
 
   constructor(
-    id: string | null,
+    id: number,
     email: string | null,
     timeUnit: string | null,
     theme: string | null,
