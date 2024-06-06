@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateService } from '../../../services/date.service';
 import { UserService } from '../../../services/user.service';
-import { User } from '../../../models/user.model';
 
 @Component({
   selector: 'app-date-add',
   templateUrl: './date-add.component.html',
   styleUrls: ['./date-add.component.css'],
 })
-export class DateAddComponent implements OnInit {
+export class DateAddComponent {
   dateForm: FormGroup;
-  user: User | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -19,26 +17,20 @@ export class DateAddComponent implements OnInit {
     private userService: UserService
   ) {
     this.dateForm = this.fb.group({
-      title: ['', Validators.required],
+      name: ['', Validators.required],
       date: ['', Validators.required],
     });
   }
 
-  ngOnInit() {
-    this.userService.user$.subscribe((user) => {
-      this.user = user;
-    });
-  }
-
   saveDate() {
-    if (this.dateForm.valid && this.user) {
-      const { title, date } = this.dateForm.value;
-      const userId = this.user.id;
-      const token = this.user.token;
-
-      if (token) {
+    if (this.dateForm.valid) {
+      const { name, date } = this.dateForm.value;
+      const user = this.userService.getUser();
+      if (user) {
+        const userId = user.id;
+        const token = user.token;
         this.dateService
-          .saveDate(userId as number, title, new Date(date), token)
+          .saveDate(userId, new Date(date), name, token)
           .subscribe({
             next: (response) => {
               console.log('Date saved successfully', response);
@@ -48,10 +40,8 @@ export class DateAddComponent implements OnInit {
             },
           });
       } else {
-        console.error('User token is missing');
+        console.error('User not authenticated');
       }
-    } else {
-      console.error('User is not authenticated or form is invalid');
     }
   }
 }

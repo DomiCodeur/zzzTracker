@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatesModule } from './modules/dates/dates.module';
 import { UserService } from './services/user.service';
+import { DateService } from './services/date.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { UserService } from './services/user.service';
     HttpClientModule,
     DatesModule,
   ],
-  providers: [UserService],
+  providers: [UserService, DateService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
