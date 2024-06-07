@@ -62,12 +62,13 @@ body {
 }
 
 .left-panel,
-.right-panel,
 .center-panel {
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* center panel */
 
 .center-panel .selected-date-display {
   display: flex;
@@ -116,20 +117,10 @@ body {
   margin-top: 0;
 }
 
-.right-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding-top: 20%;
-}
+/* right panel */
 
-.cards-container {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-right: 30px;
+.right-panel {
+  margin: 30px;
 }
 
 .date-card {
@@ -138,6 +129,7 @@ body {
   border-width: 2px;
   border-style: solid;
   border-color: #ccc;
+  margin-top: 10px;
   padding: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;

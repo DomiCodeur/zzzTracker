@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -28,26 +29,33 @@ export class RegisterComponent {
 
   register() {
     if (this.registerForm.valid) {
-      const { email, password } = this.registerForm.value as {
-        email: string;
-        password: string;
-      };
+      const { email, password } = this.registerForm.value;
       this.authService.register(email, password).subscribe({
         next: (response) => {
           console.log('Registration successful', response);
-          this.router.navigate(['/']);
-          const newUser = new User(
-            response.userId,
-            response.email,
-            null,
-            null,
-            response.token
-          );
-          this.userService.setUser(newUser);
+
+          this.authService.login(email, password).subscribe({
+            next: (loginResponse) => {
+              console.log('Login successful', loginResponse);
+              this.router.navigate(['/']);
+              const newUser = new User(
+                loginResponse.userId,
+                email,
+                null,
+                null,
+                loginResponse.token
+              );
+              this.userService.setUser(newUser);
+            },
+            error: (loginError) => {
+              console.error('Login error:', loginError);
+              this.errorMessage = loginError.message;
+            },
+          });
         },
-        error: (error) => {
-          this.errorMessage = error.message;
-          console.error('Registration error:', error);
+        error: (registerError) => {
+          console.error('Registration error:', registerError);
+          this.errorMessage = registerError.message;
         },
       });
     }

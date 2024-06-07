@@ -1,1 +1,19 @@
-<p>date-list works!</p>
+<div class="cards-container">
+  <ng-container *ngFor="let date of dates; let i = index">
+    <div
+      class="date-card"
+      [class.selected]="date.isSelected"
+      (click)="onSelectDate(date.id)"
+    >
+      <h3>{{ date.name }}</h3>
+      <p>{{ date.date | date : "dd/MM/yyyy" }}</p>
+      <button
+        type="button"
+        (click)="onDeleteDate(date.id)"
+        *ngIf="!date.isSelected"
+      >
+        Delete
+      </button>
+    </div>
+  </ng-container>
+</div>

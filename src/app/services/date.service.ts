@@ -1,52 +1,117 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
+import { catchError, map, tap, switchMap } from 'rxjs/operators';
+import { DateModel } from '../models/date.model';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DateService {
   private apiBaseUrl = '/api';
-  constructor(private http: HttpClient) {}
+  private datesSource = new BehaviorSubject<DateModel[]>([]);
+  private selectedDateId = new BehaviorSubject<number | null>(null);
 
-  saveDate(
-    userId: number,
-    date: Date,
-    name: string,
-    token: string
-  ): Observable<any> {
-    const headers = { Authorization: `Bearer ${token}` };
-    const url = `${this.apiBaseUrl}/users/${userId}/dates`;
-    return this.http.post(url, { userId, date, name }, { headers });
+  dates$ = this.datesSource.asObservable();
+  selectedDate$ = this.selectedDateId
+    .asObservable()
+    .pipe(
+      switchMap((id) =>
+        id === null || id === undefined
+          ? [undefined]
+          : this.dates$.pipe(
+              map((dates) => dates.find((date) => date.id === id) ?? undefined)
+            )
+      )
+    );
+
+  constructor(private http: HttpClient, private userService: UserService) {}
+
+  setSelectedDate(dateId: number): void {
+    this.selectedDateId.next(dateId);
   }
 
-  getDatesByUserId(userId: number, token: string): Observable<any[]> {
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.get<any[]>(`${this.apiBaseUrl}/users/${userId}/dates`, {
-      headers,
+  fetchDatesFromAPI(): void {
+    const user = this.userService.getUser();
+    if (!user) {
+      console.error('User not found');
+      return;
+    }
+
+    const headers = this.createHeaders(user.token);
+    this.http
+      .get<DateModel[]>(`${this.apiBaseUrl}/users/${user.id}/dates`, {
+        headers,
+      })
+      .pipe(
+        map((dates) =>
+          dates.map(
+            (d) => new DateModel(d.id, d.name, new Date(d.date), d.isSelected)
+          )
+        ),
+        catchError((error) => {
+          if (error.status === 404) {
+            return of([] as DateModel[]);
+          } else {
+            console.error('Failed to fetch dates:', error);
+            return throwError(() => new Error('Failed to fetch dates'));
+          }
+        })
+      )
+      .subscribe((dates) => this.datesSource.next(dates));
+  }
+
+  saveDate(date: Date, name: string): Observable<DateModel> {
+    const user = this.userService.getUser();
+
+    if (!user) {
+      console.error('User not found');
+      return throwError(() => new Error('User not authenticated'));
+    }
+
+    const headers = this.createHeaders(user.token);
+    const userId = user.id;
+    const payload = { userId, date, name };
+    return this.http
+      .post<DateModel>(`${this.apiBaseUrl}/users/${user.id}/dates`, payload, {
+        headers,
+      })
+      .pipe(
+        tap((newDate) =>
+          this.datesSource.next([...this.datesSource.value, newDate])
+        ),
+        catchError((error) => {
+          console.error('Error saving date:', error);
+          return throwError(() => new Error('Error saving date'));
+        })
+      );
+  }
+
+  deleteDate(dateId: number): Observable<boolean> {
+    const user = this.userService.getUser();
+    if (!user) {
+      console.error('User not found');
+      return throwError(() => new Error('User not authenticated'));
+    }
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${user.token}`,
     });
+
+    return this.http
+      .delete<boolean>(`${this.apiBaseUrl}/users/${user.id}/dates/${dateId}`, {
+        headers,
+      })
+      .pipe(
+        catchError((error) => {
+          console.error('Error deleting date:', error);
+          return throwError(() => new Error('Error deleting date'));
+        })
+      );
   }
 
-  updateDate(
-    userId: number,
-    dateId: number,
-    date: Date,
-    name: string,
-    token: string
-  ): Observable<any> {
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.put(
-      `${this.apiBaseUrl}/users/${userId}/dates/${dateId}`,
-      { date, name },
-      { headers }
-    );
-  }
-
-  deleteDate(userId: number, dateId: number, token: string): Observable<any> {
-    const headers = { Authorization: `Bearer ${token}` };
-    return this.http.delete(
-      `${this.apiBaseUrl}/users/${userId}/dates/${dateId}`,
-      { headers }
-    );
+  private createHeaders(token: string): HttpHeaders {
+    return new HttpHeaders({ Authorization: `Bearer ${token}` });
   }
 }
