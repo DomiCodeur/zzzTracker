@@ -1,1 +1,8 @@
-<p>date-selected works!</p>
+<div *ngIf="selectedDate">
+  <h2>Selected Date</h2>
+  <h3>{{ selectedDate.name }}</h3>
+  <p>{{ selectedDate.getDateString() }}</p>
+</div>
+<div *ngIf="!selectedDate">
+  <p>No date selected</p>
+</div>

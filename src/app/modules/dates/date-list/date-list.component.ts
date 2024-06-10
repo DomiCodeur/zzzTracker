@@ -34,4 +34,21 @@ export class DateListComponent implements OnInit {
       },
     });
   }
+  moveDateUp(dateId: number): void {
+    const index = this.dates.findIndex((date) => date.id === dateId);
+    if (index > 0) {
+      const [removed] = this.dates.splice(index, 1);
+      this.dates.splice(index - 1, 0, removed);
+      this.dateService.setSelectedDate(dateId);
+    }
+  }
+
+  moveDateDown(dateId: number): void {
+    const index = this.dates.findIndex((date) => date.id === dateId);
+    if (index < this.dates.length - 1) {
+      const [removed] = this.dates.splice(index, 1);
+      this.dates.splice(index + 1, 0, removed);
+      this.dateService.setSelectedDate(dateId);
+    }
+  }
 }
