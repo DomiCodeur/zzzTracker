@@ -1,10 +1,8 @@
-<div class="cards-container">
-  <div *ngFor="let date of dates" class="date-card">
-    <h3>{{ date.name }}</h3>
-    <p>{{ date.getDateString() }}</p>
-    <button (click)="onSelectDate(date.id)">Select</button>
-    <button (click)="moveDateUp(date.id)">↑</button>
-    <button (click)="moveDateDown(date.id)">↓</button>
-    <button (click)="onDeleteDate(date.id)">Delete</button>
-  </div>
+<div *ngFor="let date of dates" class="date-card">
+  <h3>{{ date.name }}</h3>
+  <p>{{ date.getDateString() }}</p>
+  <button (click)="onSelectDate(date.id)">Select</button>
+  <button (click)="moveDateUp(date.id)">↑</button>
+  <button (click)="moveDateDown(date.id)">↓</button>
+  <button (click)="onDeleteDate(date.id)">Delete</button>
 </div>

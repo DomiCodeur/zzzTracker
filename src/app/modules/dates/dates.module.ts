@@ -5,6 +5,7 @@ import { DateListComponent } from './date-list/date-list.component';
 import { DateItemComponent } from './date-item/date-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DateSelectedComponent } from './date-selected/date-selected.component';
+import { DaysUntilPipe } from './pipes/days-until.pipe';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { DateSelectedComponent } from './date-selected/date-selected.component';
     DateListComponent,
     DateItemComponent,
     DateSelectedComponent,
+    DaysUntilPipe,
   ],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [

@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatesModule } from './modules/dates/dates.module';
 import { UserService } from './services/user.service';
 import { DateService } from './services/date.service';
-
+import { DaysUntilPipe } from './modules/dates/pipes/days-until.pipe';
 @NgModule({
   declarations: [
     AppComponent,

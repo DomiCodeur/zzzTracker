@@ -1,8 +1,9 @@
-<div *ngIf="selectedDate">
-  <h2>Selected Date</h2>
-  <h3>{{ selectedDate.name }}</h3>
-  <p>{{ selectedDate.getDateString() }}</p>
-</div>
-<div *ngIf="!selectedDate">
-  <p>No date selected</p>
+<div class="selected-date-display">
+  <div *ngIf="selectedDate">
+    <p>Dans</p>
+    <h2 class="number">{{ selectedDate.date | daysUntil }}</h2>
+    <p>jours</p>
+    <p>{{ selectedDate.name }}</p>
+  </div>
+  <div *ngIf="!selectedDate"></div>
 </div>
