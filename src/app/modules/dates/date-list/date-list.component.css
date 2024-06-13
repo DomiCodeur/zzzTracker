@@ -1,0 +1,30 @@
+.date-card {
+  background-color: #fbf1eb;
+  border-radius: 45px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #ccc;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+  width: calc(100% - 40px);
+  margin: 15px;
+}
+
+.date-card:hover {
+  transform: scale(1.05);
+}
+
+.date-card h3 {
+  color: #333;
+}
+
+.date-card p {
+  color: #666;
+}
+
+.date-card .date {
+  font-weight: bold;
+  color: #555;
+}

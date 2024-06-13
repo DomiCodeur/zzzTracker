@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { DateModel } from '../../../models/date.model';
+import { DateModel } from '../models/date.model';
 
 @Component({
   selector: 'app-date-item',

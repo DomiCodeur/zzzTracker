@@ -1,9 +1,8 @@
 <div class="selected-date-display">
   <div *ngIf="selectedDate">
-    <p>Dans</p>
+    <p>In</p>
     <h2 class="number">{{ selectedDate.date | daysUntil }}</h2>
-    <p>jours</p>
-    <p>{{ selectedDate.name }}</p>
+    <p>Nights from now</p>
+    <p class="countdown">{{ selectedDate.name }}</p>
   </div>
-  <div *ngIf="!selectedDate"></div>
 </div>

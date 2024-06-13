@@ -6,6 +6,7 @@ import { DateItemComponent } from './date-item/date-item.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DateSelectedComponent } from './date-selected/date-selected.component';
 import { DaysUntilPipe } from './pipes/days-until.pipe';
+import { DateService } from './services/date.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DaysUntilPipe } from './pipes/days-until.pipe';
     DaysUntilPipe,
   ],
   imports: [CommonModule, ReactiveFormsModule],
+  providers: [DateService],
   exports: [
     DateAddComponent,
     DateListComponent,

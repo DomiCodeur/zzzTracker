@@ -9,6 +9,8 @@
   justify-content: center;
   animation: pulse 23s infinite;
   text-align: center;
+  position: relative;
+  margin: auto;
 }
 
 @keyframes pulse {
@@ -23,8 +25,12 @@
   }
 }
 
+.selected-date-display p {
+  color: #666;
+}
+
 .number {
-  font-size: 60px;
+  font-size: 90px;
   color: #333;
   font-weight: bold;
 }

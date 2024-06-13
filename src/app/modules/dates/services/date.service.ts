@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { DateModel } from '../models/date.model';
-import { UserService } from './user.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -60,6 +60,22 @@ export class DateService {
         })
       )
       .subscribe((dates) => this.datesSource.next(dates));
+  }
+
+  private setClosestDate(dates: DateModel[]) {
+    if (dates.length === 0) {
+      this.selectedDateId.next(null);
+      return;
+    }
+
+    const closestDate = dates.reduce((prev, curr) => {
+      const now = new Date().getTime();
+      const prevDiff = Math.abs(prev.date.getTime() - now);
+      const currDiff = Math.abs(curr.date.getTime() - now);
+      return currDiff < prevDiff ? curr : prev;
+    });
+
+    this.setSelectedDate(closestDate.id);
   }
 
   saveDate(date: Date, name: string): Observable<DateModel> {

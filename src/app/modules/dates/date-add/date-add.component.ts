@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DateService } from '../../../services/date.service';
+import { DateService } from '../services/date.service';
 
 @Component({
   selector: 'app-date-add',
