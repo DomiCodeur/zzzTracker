@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
-import { DateModel } from '../models/date.model';
+import { DateModel } from '../../../models/date.model';
 import { UserService } from 'src/app/services/user.service';
 
 @Injectable({
@@ -125,6 +125,12 @@ export class DateService {
           return throwError(() => new Error('Error deleting date'));
         })
       );
+  }
+
+  getDates(): Observable<DateModel[]> {
+    return this.dates$.pipe(
+      tap((dates) => console.log('Fetching dates:', dates))
+    );
   }
 
   private createHeaders(token: string): HttpHeaders {

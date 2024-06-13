@@ -1,0 +1,53 @@
+.calendar-container {
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.calendar-container p {
+  color: #666;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.calendar-container .month {
+  margin-bottom: 10px;
+}
+
+.calendar-container .days {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.calendar-container .day {
+  color: #666;
+  flex: 0 0 14%;
+  padding: 5px;
+  margin: 2px;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.calendar-container .color1 {
+  background-color: #bd979a;
+}
+
+.calendar-container .color2 {
+  background-color: #c6c5be;
+}
+
+.calendar-container .color3 {
+  background-color: #bdbdb9;
+}
+
+.calendar-container .color4 {
+  background-color: #c6c6be;
+}
+
+.calendar-container .color5 {
+  background-color: #b1bcc5;
+}

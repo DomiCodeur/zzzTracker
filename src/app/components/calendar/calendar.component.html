@@ -1,0 +1,14 @@
+<div class="calendar-container">
+  <div *ngFor="let month of calendar" class="month">
+    <p>{{ month.month }}</p>
+    <div class="days">
+      <div
+        *ngFor="let day of month.days; let dayIndex = index"
+        [ngClass]="getDayClass(dayIndex, day.events.length)"
+        class="day"
+      >
+        <div>{{ day.day }}</div>
+      </div>
+    </div>
+  </div>
+</div>

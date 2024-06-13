@@ -10,6 +10,8 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DatesModule } from './modules/dates/dates.module';
 import { UserService } from './services/user.service';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { CalendarService } from './services/calendar.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { UserService } from './services/user.service';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { UserService } from './services/user.service';
     HttpClientModule,
     DatesModule,
   ],
-  providers: [UserService],
+  providers: [UserService, CalendarService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
