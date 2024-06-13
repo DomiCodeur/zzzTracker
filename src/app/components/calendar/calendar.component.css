@@ -1,7 +1,7 @@
 .calendar-container {
   width: 90%;
-  margin: 10px auto;
-  padding: 10px;
+  margin: auto auto;
+  padding: 5px;
   border-radius: 20px;
   border: 1px solid #ccc;
   text-align: center;
@@ -26,26 +26,24 @@
 .calendar-container .day {
   color: #666;
   flex: 0 0 14%;
-  padding: 5px;
-  margin: 2px;
   border-radius: 4px;
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .calendar-container .color1 {
-  background-color: #bd979a;
+  background-color: #d8b3aa;
 }
 
 .calendar-container .color2 {
-  background-color: #c6c5be;
+  background-color: #8a9392;
 }
 
 .calendar-container .color3 {
-  background-color: #bdbdb9;
+  background-color: #b1a299;
 }
 
 .calendar-container .color4 {
-  background-color: #c6c6be;
+  background-color: #8a7975;
 }
 
 .calendar-container .color5 {
