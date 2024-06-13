@@ -1,5 +1,5 @@
 <div class="register-container">
-  <h2 class="title">Créer un compte</h2>
+  <h2 class="title">Register</h2>
   <form [formGroup]="registerForm" class="form-container">
     <div class="input-group">
       <label for="email">Email</label>
@@ -12,7 +12,7 @@
       />
     </div>
     <div class="input-group">
-      <label for="password">Mot de passe</label>
+      <label for="password">Password</label>
       <input
         formControlName="password"
         id="password"
@@ -22,6 +22,8 @@
       />
     </div>
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-    <button type="button" class="btn" (click)="register()">S'inscrire</button>
+    <button type="button" class="btn" (click)="register()">
+      Create my account
+    </button>
   </form>
 </div>

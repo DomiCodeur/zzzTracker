@@ -1,5 +1,5 @@
 <div class="register-container">
-  <h2 class="title">Se connecter</h2>
+  <h2 class="title">Login</h2>
   <form [formGroup]="loginForm" class="form-container">
     <div class="input-group">
       <label for="email">Email</label>
@@ -12,7 +12,7 @@
       />
     </div>
     <div class="input-group">
-      <label for="password">Mot de passe</label>
+      <label for="password">Password</label>
       <input
         formControlName="password"
         id="password"
@@ -22,6 +22,6 @@
       />
     </div>
     <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-    <button type="button" class="btn" (click)="login()">Se connecter</button>
+    <button type="button" class="btn" (click)="login()">Log me in</button>
   </form>
 </div>
