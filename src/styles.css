@@ -15,6 +15,10 @@ html,
 body {
   overflow: hidden;
   background-color: #fbf1eb;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .app-container {
@@ -32,6 +36,7 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 5vh;
+  width: 100%;
 }
 
 .app-header h1 {
@@ -48,6 +53,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
+  width: 100%;
 }
 
 /* TOP SECTION */
@@ -59,6 +65,7 @@ body {
   background-size: cover;
   overflow: hidden;
   height: 45vh;
+  width: 100%;
 }
 
 /* center panel */
@@ -76,37 +83,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   max-height: calc(100vh - 120px);
-}
-
-.date-card {
-  background-color: #fbf1eb;
-  border-radius: 45px;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #ccc;
-  padding: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
-  width: calc(100% - 20px);
-  margin: 10px 0;
-}
-
-.date-card:hover {
-  transform: scale(1.05);
-}
-
-.date-card h3 {
-  color: #333;
-}
-
-.date-card p {
-  color: #666;
-}
-
-.date-card .date {
-  font-weight: bold;
-  color: #555;
+  width: 100%;
 }
 
 /* BOTTOM SECTION */
@@ -116,6 +93,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   border-top: 2px solid #ccc;
   height: 55vh;
+  width: 100%;
 }
 
 .bottom-section .section {
@@ -132,10 +110,13 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .bottom-section .section:nth-child(2) {
   display: flex;
   align-items: center;
+  padding: 100px 20px;
 }
+
 .date-input-container {
   display: flex;
   flex-direction: column;
@@ -173,4 +154,80 @@ body {
 
 .submit-button:hover {
   background-color: #333;
+}
+
+/* For small screens */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 100%;
+  }
+
+  .center-panel {
+    margin-bottom: 20px;
+  }
+
+  .right-panel {
+    max-height: 40vh;
+    overflow-y: scroll;
+    width: 100%;
+    padding: 0 20px;
+  }
+
+  .bottom-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: none;
+  }
+
+  .bottom-section .section {
+    border-left: none;
+    padding-top: 20px;
+    width: 100%;
+  }
+
+  .bottom-section .section:first-child {
+    background: none;
+  }
+
+  .bottom-section .section:nth-child(2) {
+    align-items: center;
+    padding: 0;
+  }
+}
+
+/* making sure the date card doesn't overflow */
+.date-card {
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+}
+
+.date-card:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+/* Center the text inside the sun */
+.selected-date-display {
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, #fffff6, #fffff6 80%, #fffff6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: pulse 23s infinite;
+  text-align: center;
+  margin-bottom: 20px;
 }
