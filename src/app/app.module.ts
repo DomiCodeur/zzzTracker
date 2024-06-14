@@ -12,6 +12,8 @@ import { DatesModule } from './modules/dates/dates.module';
 import { UserService } from './services/user.service';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarService } from './services/calendar.service';
+import { QuoteComponent } from './components/quote/quote.component';
+import { QuoteService } from './services/quote.service';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { CalendarService } from './services/calendar.service';
     RegisterComponent,
     LoginComponent,
     CalendarComponent,
+    QuoteComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { CalendarService } from './services/calendar.service';
     HttpClientModule,
     DatesModule,
   ],
-  providers: [UserService, CalendarService],
+  providers: [UserService, CalendarService, QuoteService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,13 @@
+.quote-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.quote {
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.author {
+  font-weight: bold;
+}
