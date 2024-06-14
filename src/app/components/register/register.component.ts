@@ -4,7 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
-import { LoginComponent } from '../login/login.component';
+import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +19,7 @@ export class RegisterComponent {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private userService: UserService,
+    private errorHandlerService: ErrorHandlerService,
     private router: Router
   ) {
     this.registerForm = this.fb.group({
@@ -33,31 +34,37 @@ export class RegisterComponent {
       this.authService.register(email, password).subscribe({
         next: (response) => {
           console.log('Registration successful', response);
-
-          this.authService.login(email, password).subscribe({
-            next: (loginResponse) => {
-              console.log('Login successful', loginResponse);
-              this.router.navigate(['/']);
-              const newUser = new User(
-                loginResponse.userId,
-                email,
-                null,
-                null,
-                loginResponse.token
-              );
-              this.userService.setUser(newUser);
-            },
-            error: (loginError) => {
-              console.error('Login error:', loginError);
-              this.errorMessage = loginError.message;
-            },
-          });
+          this.loginAfterRegister(email, password);
         },
-        error: (registerError) => {
-          console.error('Registration error:', registerError);
-          this.errorMessage = registerError.message;
+        error: (error) => {
+          console.error('Registration error:', error);
+          this.errorMessage = this.errorHandlerService.handleError(error);
         },
       });
+    } else {
+      this.errorMessage =
+        'Please fill all required fields with valid information.';
     }
+  }
+
+  private loginAfterRegister(email: string, password: string) {
+    this.authService.login(email, password).subscribe({
+      next: (response) => {
+        console.log('Login successful', response);
+        this.router.navigate(['/']);
+        const newUser = new User(
+          response.userId,
+          email,
+          null,
+          null,
+          response.token
+        );
+        this.userService.setUser(newUser);
+      },
+      error: (error) => {
+        console.error('Login error:', error);
+        this.errorMessage = this.errorHandlerService.handleError(error);
+      },
+    });
   }
 }

@@ -14,6 +14,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { CalendarService } from './services/calendar.service';
 import { QuoteComponent } from './components/quote/quote.component';
 import { QuoteService } from './services/quote.service';
+import { ErrorHandlerService } from './services/error-handler.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { QuoteService } from './services/quote.service';
     HttpClientModule,
     DatesModule,
   ],
-  providers: [UserService, CalendarService, QuoteService],
+  providers: [UserService, CalendarService, QuoteService, ErrorHandlerService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

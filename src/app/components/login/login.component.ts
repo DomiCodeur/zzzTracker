@@ -4,6 +4,7 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
+import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthenticationService,
     private userService: UserService,
+    private errorHandlerService: ErrorHandlerService,
 
     private router: Router
   ) {
@@ -43,10 +45,12 @@ export class LoginComponent {
           this.userService.setUser(newUser);
         },
         error: (error) => {
-          this.errorMessage = error.message;
+          this.errorMessage = this.errorHandlerService.handleError(error);
           console.error('Login error:', error);
         },
       });
+    } else {
+      this.errorMessage = 'Please fill all fields correctly.';
     }
   }
 }
