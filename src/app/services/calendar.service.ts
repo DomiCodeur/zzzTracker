@@ -61,6 +61,4 @@ export class CalendarService {
       })
     );
   }
-
-  // Ajoutez les méthodes pour avancer ou reculer le calendrier ici
 }
