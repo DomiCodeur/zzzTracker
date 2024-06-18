@@ -50,7 +50,7 @@ describe('AuthenticationService', () => {
       });
 
     // Expect a single POST request to the correct URL
-    const req = httpMock.expectOne(`${service['apiBaseUrl']}/users`);
+    const req = httpMock.expectOne(`${service['apiUrl']}/users`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({
       email: 'test@example.com',
@@ -79,9 +79,7 @@ describe('AuthenticationService', () => {
     });
 
     // Expect a single POST request to the correct URL
-    const req = httpMock.expectOne(
-      `${service['apiBaseUrl']}/auth/authenticate`
-    );
+    const req = httpMock.expectOne(`${service['apiUrl']}/auth/authenticate`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({
       email: 'test@example.com',
