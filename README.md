@@ -37,49 +37,7 @@ To run this project, you will need:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
-   ```
-
-# zzzTracker Frontend
-
-## Overview
-
-**zzzTracker** is an online tool that allows users to calculate the remaining time until a given date in days, months, years, or sleeps. Users can register, save their dates, and choose the time unit for the countdown display.
-
-## Features
-
-- User registration and authentication
-- Save and manage multiple countdown dates
-- Display remaining time in various units (days, months, years, sleeps)
-- User preferences for time unit display
-- Responsive user interface
-
-## Table of Contents
-
-- [Technical Stack](#technical-stack)
-- [Prerequisites](#prerequisites)
-- [Configuration](#configuration)
-- [Running the Project](#running-the-project)
-- [Deployment](#deployment)
-- [Contribution](#contribution)
-- [Contact](#contact)
-
-## Technical Stack
-
-- **Frontend**: Angular
-
-## Prerequisites
-
-To run this project, you will need:
-
-- Node.js
-- Angular CLI
-
-## Configuration
-
-1. Clone the repository:
-   ```bash
-   git clone <git@github.com:Matdomichard/zzzTracker.git>
+   git clone <https://github.com/Matdomichard/zzzTracker.git>
    ```
 2. Navigate to the project directory:
 
