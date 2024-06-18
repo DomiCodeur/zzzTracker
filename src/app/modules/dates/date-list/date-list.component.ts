@@ -27,13 +27,13 @@ export class DateListComponent implements OnInit {
     this.dateService.deleteDate(dateId).subscribe({
       next: () => {
         console.log('Date deleted');
-        this.dateService.fetchDatesFromAPI();
       },
       error: (error) => {
         console.error('Error deleting date:', error);
       },
     });
   }
+
   moveDateUp(dateId: number): void {
     const index = this.dates.findIndex((date) => date.id === dateId);
     if (index > 0) {

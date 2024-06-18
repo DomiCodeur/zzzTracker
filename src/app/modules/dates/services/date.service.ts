@@ -94,9 +94,9 @@ export class DateService {
         headers,
       })
       .pipe(
-        tap((newDate) =>
-          this.datesSource.next([...this.datesSource.value, newDate])
-        ),
+        tap((newDate) => {
+          this.fetchDatesFromAPI();
+        }),
         catchError((error) => {
           console.error('Error saving date:', error);
           return throwError(() => new Error('Error saving date'));
@@ -120,6 +120,9 @@ export class DateService {
         headers,
       })
       .pipe(
+        tap(() => {
+          this.fetchDatesFromAPI();
+        }),
         catchError((error) => {
           console.error('Error deleting date:', error);
           return throwError(() => new Error('Error deleting date'));
