@@ -1,8 +1,3 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://comptearebours-a15a75eeaba9.herokuapp.com/api/$1"
-    }
-  ]
+  "rewrites": [{ "source": "/api/(.*)", "destination": "/api/proxy" }]
 }
