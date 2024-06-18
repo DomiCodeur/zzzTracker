@@ -54,10 +54,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "zzzTracker:build:production"
+              "browserTarget": "zzzTracker:build:production",
+              "proxyConfig": "src/proxy.conf.prod.json"
             },
             "development": {
-              "browserTarget": "zzzTracker:build:development"
+              "browserTarget": "zzzTracker:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
