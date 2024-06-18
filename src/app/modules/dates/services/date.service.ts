@@ -4,12 +4,13 @@ import { BehaviorSubject, Observable, throwError, of } from 'rxjs';
 import { catchError, map, tap, switchMap } from 'rxjs/operators';
 import { DateModel } from '../../../models/date.model';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DateService {
-  private apiBaseUrl = '/api';
+  private apiUrl = environment.apiUrl;
   private datesSource = new BehaviorSubject<DateModel[]>([]);
   private selectedDateId = new BehaviorSubject<number | null>(null);
 
@@ -41,7 +42,7 @@ export class DateService {
 
     const headers = this.createHeaders(user.token);
     this.http
-      .get<DateModel[]>(`${this.apiBaseUrl}/users/${user.id}/dates`, {
+      .get<DateModel[]>(`${this.apiUrl}/users/${user.id}/dates`, {
         headers,
       })
       .pipe(
@@ -90,7 +91,7 @@ export class DateService {
     const userId = user.id;
     const payload = { userId, date, name };
     return this.http
-      .post<DateModel>(`${this.apiBaseUrl}/users/${user.id}/dates`, payload, {
+      .post<DateModel>(`${this.apiUrl}/users/${user.id}/dates`, payload, {
         headers,
       })
       .pipe(
@@ -116,7 +117,7 @@ export class DateService {
     });
 
     return this.http
-      .delete<boolean>(`${this.apiBaseUrl}/users/${user.id}/dates/${dateId}`, {
+      .delete<boolean>(`${this.apiUrl}/users/${user.id}/dates/${dateId}`, {
         headers,
       })
       .pipe(

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface AuthResponseData {
   id: string;
@@ -13,12 +14,12 @@ interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  private apiBaseUrl = '/api';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
   register(email: string, password: string): Observable<AuthResponseData> {
-    return this.http.post<AuthResponseData>(`${this.apiBaseUrl}/users`, {
+    return this.http.post<AuthResponseData>(`${this.apiUrl}/users`, {
       email,
       password,
       signInMethod: 'email',
@@ -27,7 +28,7 @@ export class AuthenticationService {
 
   login(email: string, password: string): Observable<AuthResponseData> {
     return this.http.post<AuthResponseData>(
-      `${this.apiBaseUrl}/auth/authenticate`,
+      `${this.apiUrl}/auth/authenticate`,
       {
         email,
         password,
