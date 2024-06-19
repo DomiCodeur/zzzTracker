@@ -7,15 +7,16 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class CalendarService {
-  currentYear = new Date().getFullYear();
-  currentMonth = new Date().getMonth();
+  private currentDate = new Date();
+  private currentYear = this.currentDate.getFullYear();
+  private currentMonth = this.currentDate.getMonth();
 
   constructor(private dateService: DateService) {}
 
-  generateCalendar(year: number): any[] {
+  generateCalendar(): any[] {
     const months = [
       { name: 'January', days: 31 },
-      { name: 'February', days: year % 4 === 0 ? 29 : 28 },
+      { name: 'February', days: this.currentYear % 4 === 0 ? 29 : 28 },
       { name: 'March', days: 31 },
       { name: 'April', days: 30 },
       { name: 'May', days: 31 },
@@ -28,33 +29,50 @@ export class CalendarService {
       { name: 'December', days: 31 },
     ];
 
-    const calendar = months
-      .slice(this.currentMonth, this.currentMonth + 2)
-      .map((month) => {
-        const days = [];
-        for (let i = 1; i <= month.days; i++) {
-          days.push({ day: i, events: [] });
-        }
-        return { month: month.name, days };
+    // Generate calendar for one year starting from the current month
+    let calendar = [];
+    for (let m = 0; m < 12; m++) {
+      const monthIndex = (this.currentMonth + m) % 12;
+      const yearOffset = Math.floor((this.currentMonth + m) / 12);
+      const daysInMonth = months[monthIndex].days;
+      const monthDays = [];
+      for (let d = 1; d <= daysInMonth; d++) {
+        monthDays.push({ day: d, events: [] });
+      }
+      calendar.push({
+        month: months[monthIndex].name + ' ' + (this.currentYear + yearOffset),
+        days: monthDays,
       });
-
+    }
     return calendar;
   }
 
   getCalendarWithEvents(): Observable<any[]> {
     return this.dateService.getDates().pipe(
       map((events) => {
-        const calendar = this.generateCalendar(this.currentYear);
+        const calendar = this.generateCalendar();
         events.forEach((event) => {
           const eventDate = new Date(event.date);
-          if (eventDate.getFullYear() === this.currentYear) {
-            const monthIndex = eventDate.getMonth() - this.currentMonth;
-            if (monthIndex >= 0 && monthIndex < calendar.length) {
-              const day = calendar[monthIndex].days[eventDate.getDate() - 1];
-              if (day) {
-                day.events.push(event);
-              }
+          const eventYear = eventDate.getFullYear();
+          const eventMonth = eventDate.getMonth();
+          const eventDay = eventDate.getDate();
+          const calendarIndex =
+            (eventYear - this.currentYear) * 12 +
+            (eventMonth - this.currentMonth);
+          if (calendarIndex >= 0 && calendarIndex < calendar.length) {
+            const dayIndex = eventDay - 1;
+            const day = calendar[calendarIndex].days[dayIndex];
+            if (day) {
+              day.events.push(event);
+              console.log('Event added:', event, 'to day:', day);
             }
+          } else {
+            console.log(
+              'Event not added:',
+              event,
+              'Index out of bounds:',
+              calendarIndex
+            );
           }
         });
         return calendar;

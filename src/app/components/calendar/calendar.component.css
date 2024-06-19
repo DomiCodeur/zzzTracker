@@ -1,10 +1,12 @@
 .calendar-container {
+  position: relative;
   width: 90%;
   margin: auto auto;
   padding: 5px;
   border-radius: 20px;
   border: 1px solid #ccc;
   text-align: center;
+  padding-left: 15px;
 }
 
 .calendar-container p {
@@ -20,7 +22,6 @@
 .calendar-container .days {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
 }
 
 .calendar-container .day {
@@ -28,6 +29,24 @@
   flex: 0 0 14%;
   border-radius: 4px;
   transition: background-color 0.3s, transform 0.3s;
+}
+
+.calendar-container .arrow {
+  cursor: pointer;
+  font-size: 24px;
+  border: none;
+  background: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.calendar-container .arrow.left {
+  left: 1px;
+}
+
+.calendar-container .arrow.right {
+  right: 1px;
 }
 
 .calendar-container .color1 {

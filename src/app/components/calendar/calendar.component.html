@@ -1,5 +1,20 @@
 <div class="calendar-container">
-  <div *ngFor="let month of calendar" class="month">
+  <button
+    *ngIf="canNavigateBack()"
+    (click)="changeMonth(-1)"
+    class="arrow left"
+  >
+    <img src="assets/icons/back.png" alt="Back" />
+  </button>
+  <button
+    *ngIf="canNavigateForward()"
+    (click)="changeMonth(1)"
+    class="arrow right"
+  >
+    <img src="assets/icons/next.png" alt="Next" />
+  </button>
+
+  <div *ngFor="let month of currentMonths" class="month">
     <p>{{ month.month }}</p>
     <div class="days">
       <div
