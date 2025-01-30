@@ -1,11 +1,11 @@
-{
+module.exports = {
   "/api": {
-    "target": "https://comptearebours-a15a75eeaba9.herokuapp.com",
-    "secure": true,
+    "target": process.env.API_URL,
+    "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",
     "pathRewrite": {
       "^/api": ""
     }
   }
-}
+};
