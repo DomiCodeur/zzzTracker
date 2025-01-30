@@ -12,5 +12,6 @@ fs.writeFile(targetPath, envConfigFile, (err) => {
     console.log(err);
   } else {
     console.log(`Fichier d'environnement généré correctement à ${targetPath}`);
+    console.log (`API_URL: ${process.env.API_URL}`);
   }
 });
