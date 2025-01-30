@@ -1,7 +1,7 @@
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const apiProxy = createProxyMiddleware({
-  target: "https://comptearebours-a15a75eeaba9.herokuapp.com",
+  target: process.env.API_URL,
   changeOrigin: true,
   pathRewrite: {
     "^/api": "",
