@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class QuoteService {
-  private apiURL = 'https://api.quotable.io/random';
+  private apiURL = 'https://quoteslate.vercel.app/api/quotes/random';
 
   constructor(private http: HttpClient) {}
 
   getRandomQuote(language: string): Observable<any> {
-    return this.http.get(`${this.apiURL}?tags=inspirational&lang=${language}`);
+    return this.http.get(`${this.apiURL}?tags=inspiration`);
   }
 }

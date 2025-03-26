@@ -18,7 +18,7 @@ export class QuoteComponent implements OnInit {
 
   loadRandomQuote(lang: string) {
     this.quoteService.getRandomQuote(lang).subscribe((data) => {
-      this.quote = data.content;
+      this.quote = data.quote;
       this.author = data.author;
     });
   }
