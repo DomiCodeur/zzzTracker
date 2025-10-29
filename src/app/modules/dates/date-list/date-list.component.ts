@@ -3,9 +3,10 @@ import { DateService } from '../services/date.service';
 import { DateModel } from '../../../models/date.model';
 
 @Component({
-  selector: 'app-date-list',
-  templateUrl: './date-list.component.html',
-  styleUrls: ['./date-list.component.css'],
+    selector: 'app-date-list',
+    templateUrl: './date-list.component.html',
+    styleUrls: ['./date-list.component.css'],
+    standalone: false
 })
 export class DateListComponent implements OnInit {
   dates: DateModel[] = [];

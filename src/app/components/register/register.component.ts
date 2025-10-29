@@ -7,9 +7,10 @@ import { Router } from '@angular/router';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+    selector: 'app-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.css'],
+    standalone: false
 })
 export class RegisterComponent {
   registerForm: FormGroup;

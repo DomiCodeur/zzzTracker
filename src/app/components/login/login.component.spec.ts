@@ -4,8 +4,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthenticationService } from '../../services/authentication.service';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { of, throwError } from 'rxjs';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 // Mock classes for services and router
 class MockAuthService {
@@ -35,14 +36,16 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [LoginComponent],
-      imports: [ReactiveFormsModule, FormsModule, HttpClientTestingModule],
-      providers: [
+    declarations: [LoginComponent],
+    imports: [ReactiveFormsModule, FormsModule],
+    providers: [
         { provide: AuthenticationService, useClass: MockAuthService },
         { provide: UserService, useClass: MockUserService },
         { provide: Router, useClass: MockRouter },
-      ],
-    }).compileComponents();
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

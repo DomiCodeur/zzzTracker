@@ -60,12 +60,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "zzzTracker:build:production",
-              "proxyConfig": "src/proxy.conf.prod.json"
+              "proxyConfig": "src/proxy.conf.prod.json",
+              "buildTarget": "zzzTracker:build:production"
             },
             "development": {
-              "browserTarget": "zzzTracker:build:development",
-              "proxyConfig": "src/proxy.conf.json"
+              "proxyConfig": "src/proxy.conf.json",
+              "buildTarget": "zzzTracker:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "zzzTracker:build"
+            "buildTarget": "zzzTracker:build"
           }
         },
         "test": {
@@ -91,5 +91,31 @@
   },
   "cli": {
     "analytics": false
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "type": "component"
+    },
+    "@schematics/angular:directive": {
+      "type": "directive"
+    },
+    "@schematics/angular:service": {
+      "type": "service"
+    },
+    "@schematics/angular:guard": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:interceptor": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:module": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:pipe": {
+      "typeSeparator": "."
+    },
+    "@schematics/angular:resolver": {
+      "typeSeparator": "."
+    }
   }
 }

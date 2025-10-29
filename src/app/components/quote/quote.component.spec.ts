@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { QuoteComponent } from './quote.component';
 import { QuoteService } from '../../services/quote.service';
 import { of } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 // Mock class for QuoteService
 class MockQuoteService {
@@ -21,10 +22,10 @@ describe('QuoteComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [QuoteComponent],
-      imports: [HttpClientTestingModule],
-      providers: [{ provide: QuoteService, useClass: MockQuoteService }],
-    }).compileComponents();
+    declarations: [QuoteComponent],
+    imports: [],
+    providers: [{ provide: QuoteService, useClass: MockQuoteService }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

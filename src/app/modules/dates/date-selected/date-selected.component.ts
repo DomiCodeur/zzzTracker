@@ -3,9 +3,10 @@ import { DateService } from '../services/date.service';
 import { DateModel } from '../../../models/date.model';
 
 @Component({
-  selector: 'app-date-selected',
-  templateUrl: './date-selected.component.html',
-  styleUrls: ['./date-selected.component.css'],
+    selector: 'app-date-selected',
+    templateUrl: './date-selected.component.html',
+    styleUrls: ['./date-selected.component.css'],
+    standalone: false
 })
 export class DateSelectedComponent implements OnInit {
   selectedDate?: DateModel;

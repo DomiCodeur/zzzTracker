@@ -2,7 +2,7 @@
 
 ## Overview
 
-**zzzTracker** is an online tool that allows users to calculate the remaining time until a given date in days, months, years, or sleeps. Users can register, save their dates, and choose the time unit for the countdown display.
+**zzzTracker** is an online tool that allows users to calculate the remaining time until a given date in days, months, years, or sleeps. Built with Angular 20, users can register, save their dates, and choose the time unit for the countdown display.
 
 ## Features
 
@@ -24,7 +24,8 @@
 
 ## Technical Stack
 
-- **Frontend**: Angular
+- **Frontend**: Angular 20
+- **TypeScript**: 5.8
 
 ## Prerequisites
 

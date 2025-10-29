@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { DatesModule } from './modules/dates/dates.module';
 import { UserService } from './services/user.service';
 import { CalendarComponent } from './components/calendar/calendar.component';
@@ -16,23 +16,16 @@ import { QuoteComponent } from './components/quote/quote.component';
 import { QuoteService } from './services/quote.service';
 import { ErrorHandlerService } from './services/error-handler.service';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    RegisterComponent,
-    LoginComponent,
-    CalendarComponent,
-    QuoteComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    DatesModule,
-  ],
-  providers: [UserService, CalendarService, QuoteService, ErrorHandlerService],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        HomeComponent,
+        RegisterComponent,
+        LoginComponent,
+        CalendarComponent,
+        QuoteComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        DatesModule], providers: [UserService, CalendarService, QuoteService, ErrorHandlerService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}

@@ -3,7 +3,8 @@ import { DateSelectedComponent } from './date-selected.component';
 import { DateService } from '../services/date.service';
 import { of, BehaviorSubject } from 'rxjs';
 import { DateModel } from '../../../models/date.model';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 // Mock class for DateService
 class MockDateService {
@@ -33,10 +34,10 @@ describe('DateSelectedComponent', () => {
   // Configure the testing module and inject the necessary services
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DateSelectedComponent],
-      imports: [HttpClientTestingModule],
-      providers: [{ provide: DateService, useClass: MockDateService }],
-    }).compileComponents();
+    declarations: [DateSelectedComponent],
+    imports: [],
+    providers: [{ provide: DateService, useClass: MockDateService }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

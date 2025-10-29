@@ -2,9 +2,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { DateModel } from '../../../models/date.model';
 
 @Component({
-  selector: 'app-date-item',
-  templateUrl: './date-item.component.html',
-  styleUrls: ['./date-item.component.css'],
+    selector: 'app-date-item',
+    templateUrl: './date-item.component.html',
+    styleUrls: ['./date-item.component.css'],
+    standalone: false
 })
 export class DateItemComponent {
   @Input()

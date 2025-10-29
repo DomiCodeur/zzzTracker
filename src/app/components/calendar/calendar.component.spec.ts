@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { CalendarComponent } from './calendar.component';
 import { CalendarService } from '../../services/calendar.service';
 import { of } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 // Mock class for CalendarService
 class MockCalendarService {
@@ -22,10 +23,10 @@ describe('CalendarComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [CalendarComponent],
-      imports: [HttpClientTestingModule],
-      providers: [{ provide: CalendarService, useClass: MockCalendarService }],
-    }).compileComponents();
+    declarations: [CalendarComponent],
+    imports: [],
+    providers: [{ provide: CalendarService, useClass: MockCalendarService }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

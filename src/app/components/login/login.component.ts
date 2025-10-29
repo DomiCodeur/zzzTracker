@@ -7,9 +7,10 @@ import { User } from 'src/app/models/user.model';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
+    standalone: false
 })
 export class LoginComponent {
   loginForm: FormGroup;

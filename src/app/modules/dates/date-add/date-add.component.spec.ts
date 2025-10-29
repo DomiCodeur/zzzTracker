@@ -3,7 +3,8 @@ import { DateAddComponent } from './date-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DateService } from '../services/date.service';
 import { of, throwError } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 // Mock class for DateService
 class MockDateService {
@@ -20,10 +21,10 @@ describe('DateAddComponent', () => {
   // Configure the testing module and inject the necessary services
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DateAddComponent],
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
-      providers: [{ provide: DateService, useClass: MockDateService }],
-    }).compileComponents();
+    declarations: [DateAddComponent],
+    imports: [ReactiveFormsModule],
+    providers: [{ provide: DateService, useClass: MockDateService }, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

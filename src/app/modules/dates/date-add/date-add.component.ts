@@ -3,9 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateService } from '../services/date.service';
 
 @Component({
-  selector: 'app-date-add',
-  templateUrl: './date-add.component.html',
-  styleUrls: ['./date-add.component.css'],
+    selector: 'app-date-add',
+    templateUrl: './date-add.component.html',
+    styleUrls: ['./date-add.component.css'],
+    standalone: false
 })
 export class DateAddComponent {
   dateForm: FormGroup;
